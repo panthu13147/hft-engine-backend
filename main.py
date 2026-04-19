@@ -69,3 +69,20 @@ async def receive_contact(form_data: ContactForm):
             return {"status": "error", "message": "Failed to save transmission."}
 
     return {"status": "success", "message": "Transmission received and locked in the vault."}
+
+
+import random
+
+
+# 📈 HFT LIVE TICKER ROUTE
+@app.get("/ticker")
+async def live_ticker():
+    # Simulate HFT micro-fluctuations
+    btc_price = 64230.50 + random.uniform(-25.0, 25.0)
+    sol_price = 145.20 + random.uniform(-1.5, 1.5)
+
+    return {
+        "BTC": round(btc_price, 2),
+        "SOL": round(sol_price, 2),
+        "status": "LIVE_FEED"
+    }
