@@ -27,15 +27,15 @@ async def root():
 
 
 # 📨 THE COMMS CHANNEL: Naya POST route banaya
+# 📨 THE COMMS CHANNEL:
 @app.post("/contact")
 async def receive_contact(form_data: ContactForm):
-    # Terminal mein Hacker style mein print karne ke liye:
-    print("\n" + "=" * 50)
-    print("🚨 INCOMING TRANSMISSION FROM FRONTEND 🚨")
-    print(f"👤 Sender: {form_data.name}")
-    print(f"📧 Email: {form_data.email}")
-    print(f"💬 Message: {form_data.message}")
-    print("=" * 50 + "\n")
+    # flush=True is REQUIRED in the cloud to bypass Python's lazy buffering
+    print("\n" + "=" * 50, flush=True)
+    print("🚨 INCOMING TRANSMISSION FROM FRONTEND 🚨", flush=True)
+    print(f"👤 Sender: {form_data.name}", flush=True)
+    print(f"📧 Email: {form_data.email}", flush=True)
+    print(f"💬 Message: {form_data.message}", flush=True)
+    print("=" * 50 + "\n", flush=True)
 
-    # Frontend ko 'Success' ka message bhejna:
     return {"status": "success", "message": "Transmission received by Panth's Terminal."}
