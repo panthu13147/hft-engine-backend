@@ -5,14 +5,14 @@ from pydantic import BaseModel  # 👈 Yeh naya tool import kiya
 app = FastAPI()
 
 # 🛡️ CORS Middleware (Next.js ko allow karne ke liye)
+# 🛡️ CORS Middleware (Bulletproof Configuration)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://panthu13147.me"],  # Production URL bhi daal diya!
-    allow_credentials=True,
+    allow_origins=["*"],  # 👈 Isko "*" kar diya taaki sab allow ho
+    allow_credentials=False, # 👈 Isko False karna zaroori hai "*" ke sath
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 # 📦 Data Structure Definition (Security Guard)
 class ContactForm(BaseModel):
