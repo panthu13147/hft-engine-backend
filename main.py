@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy import create_engine, text
-
+import random
 app = FastAPI()
 
 # 🛡️ Bulletproof CORS
@@ -71,9 +71,11 @@ async def receive_contact(form_data: ContactForm):
     return {"status": "success", "message": "Transmission received and locked in the vault."}
 
 
-import random
 
-
+@app.get("/health")
+async def health():
+    from datetime import datetime
+    return {"status": "ok", "timestamp": datetime.now().isoformat()}
 # 📈 HFT LIVE TICKER ROUTE
 @app.get("/ticker")
 async def live_ticker():
