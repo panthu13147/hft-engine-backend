@@ -52,7 +52,7 @@ app = FastAPI(lifespan=lifespan)
 # In prod, restrict to your actual domain; keep ["*"] only for local dev
 ALLOWED_ORIGINS = os.getenv(
     "ALLOWED_ORIGINS",
-    "https://panthu13147.me,http://localhost:3000"
+    "https://panthu13147.me,https://www.panthu13147.me,http://localhost:3000"
 ).split(",")
 
 app.add_middleware(
